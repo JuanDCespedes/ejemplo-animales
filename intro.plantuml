@@ -1,0 +1,37 @@
+@startuml
+
+class Animal {
+    - nombre: string
+    - raza: string
+    + __init__(nombre: string, raza: string)
+    + pasear(): void
+    + alimentar(): void
+    + dar_info(): string
+}
+
+class Mascota {
+    - propietario: string
+    + __init__(nombre: string, raza: string, propietario: string)
+}
+
+class Gato {
+    + pasear(): void
+    + alimentar(): void
+}
+
+class Perro {
+    + pasear(): void
+    + alimentar(): void
+}
+
+class Lagarto {
+    + pasear(): void
+    + alimentar(): void
+}
+
+Animal <|-- Mascota
+Mascota <|-- Gato
+Mascota <|-- Perro
+Mascota <|-- Lagarto
+
+@enduml
