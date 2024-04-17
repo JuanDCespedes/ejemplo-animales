@@ -1,37 +1,65 @@
 @startuml
+class Producto {
+    - nombre: string
+    - precio: float
+    + __init__(nombre: string, precio: float)
+}
+
+class Propietario {
+    - nombre: string
+    - mascotas: list<Mascota>
+    - productos: list<Producto>
+    + __init__(nombre: string)
+    + comprar_mascota(mascota: Mascota)
+    + comprar_producto(producto: Producto)
+}
 
 class Animal {
     - nombre: string
     - raza: string
     + __init__(nombre: string, raza: string)
-    + pasear(): void
-    + alimentar(): void
     + dar_info(): string
+    + pasear()
+    + alimentar()
 }
 
 class Mascota {
-    - propietario: string
-    + __init__(nombre: string, raza: string, propietario: string)
+    - propietario: Propietario
+    + __init__(nombre: string, raza: string, propietario: Propietario)
+    + pasear()
+    + alimentar()
 }
 
 class Gato {
-    + pasear(): void
-    + alimentar(): void
+    + pasear()
+    + alimentar()
 }
 
 class Perro {
-    + pasear(): void
-    + alimentar(): void
+    + pasear()
+    + alimentar()
 }
 
 class Lagarto {
-    + pasear(): void
-    + alimentar(): void
+    + pasear()
+    + alimentar()
 }
 
+class Tienda {
+    - nombre: string
+    - mascotas: list<Mascota>
+    - productos: list<Producto>
+    + __init__(nombre: string)
+    + vender_mascota(mascota: Mascota): void
+    + vender_producto(producto: Producto): void
+}
+
+Propietario --> Producto : compra 
+Propietario --* Mascota : tiene
 Animal <|-- Mascota
 Mascota <|-- Gato
 Mascota <|-- Perro
 Mascota <|-- Lagarto
-
+Tienda o-- Mascota  
+Tienda o-- Producto  
 @enduml
